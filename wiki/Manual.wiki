@@ -38,6 +38,7 @@ Basically, most of field names get a value followed by `=` like `K=35`. And, the
 
 Short summary is in the following table and the detailed information will follow the table.
 
+
 === Summary ===
 ||Field Name||Default Value||Type||Description||
 ||FILE_NAME||NO DEFAULT||String||Read set file path.||
@@ -52,15 +53,28 @@ Short summary is in the following table and the detailed information will follow
 ||MEMORY_LIMIT||1024||Maximum memory you allow in _MB_||
 ||EXIT||NO DEFAULT||NO VALUE||Exit signal||
 
-=== Detailed Information ===
 
+=== Detailed Information ===
 ====FILE_NAME====
 You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.* After you specify the input read set by this field, following file names will be automatically generated: 
-  * _FILE_NAME_`_`template for _template sequences_
-  * _FILE_NAME_`_`contig for _contigs_
-  * _FILE_NAME_`_`refined for `refined read set`.
-These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally. The volatile files are as follows.
-  * _FILE_NAME_`_`super_edge for _super edges_; actually this file
+  * '_FILE_NAME_`_`template' for _template sequences_ which is super set of contig.
+  * '_FILE_NAME_`_`contig' for _contigs_; by our estimation. We propose some of template sequences (possibly with some error correction) as contig.
+  * '_FILE_NAME_`_`refined' for `refined read set`. Refined read set look as follows.
+{{{
+3,AAAAATAGGTCATCAAAAGGAAAAAAAATAACTTTGATTAACTAGTGTTAAACAAAAAATAGGTTTACTAAATATGTTAATCTATTCTTTTAACATAAGC
+1,AAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACTTTTGGGTCCACGTGGCAATTCTCTGAAGCGTTTACAAGAAGAAACCTTGACAAAAATGTCAATC
+3,AAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACTTTTGGGTCCACGTGGCAATTCTCTGAAGCGTTTACAAGAAGAAACCTTGACAAAAATGTCCATC
+1,AAAAGCACTGAGCCAAGGAGGAGATACAGGGTCTGTAAGCTTTACAAAGGGCAGCAGCTAAACCCCTCTTAATTCAGTGGAGCTGGTAGAGATGCTGGGG
+2,AAAAGTACATCGATGTGGTGATTAATAAGAACATGAAGCTGGGACAGAAAGTGTTAATTCCCGTAAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACT
+}}}
+This means the first read has 3 copies in the read set, the second has 1 copy, and so on.
+These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally.* The volatile files are as follows.
+  * '_FILE_NAME_`_`super_edge' for _super edges_; actually this file represent the final super-edge de Bruijn graph. If WEAV isn't terminated, you can check this file to see whether the graph is complex or not. If the graph is too complex, it can be the reason why WEAV isn't terminated and you can change paramters to make graph simpler.
+  * '_FILE_NAME_`_`def'
+  * '_FILE_NAME_`_`u.fa'
+  * '_FILE_NAME_`_`t`_`read.fa'
+  * '_FILE_NAME_`_`index'
+  * '_FILE_NAME_`_`mapping'
 ====K====
 K-mer length which is a sequence length of an edge. Surely, after constructing super-edge, the super-edge may have longer than _Kbp_ in length.
 ====INIT_LAYER====
