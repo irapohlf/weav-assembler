@@ -36,6 +36,9 @@ WEAV assumes `config.in` in the directory where WEAV is working. So, even if you
 
 Basically, most of field names get a value followed by `=` like `K=35`. And, the full list is following. *_Note: If you find any field name in the config.in, please ignore them. We will either update the information in this manual or delete the field from the config.in in the next update._*
 
+Short summary is in the following table and the detailed information will follow the table.
+
+=== Summary ===
 ||Field Name||Default Value||Type||Description||
 ||FILE_NAME||NO DEFAULT||String||Read set file path.||
 ||K||25||Integer||K-mer length in _bp_.||
@@ -45,7 +48,19 @@ Basically, most of field names get a value followed by `=` like `K=35`. And, the
 ||MIN_LEN||0||Integer||Minumum allowed contig length in _bp_.||
 ||MAX_NUM_TEMP||10000||Integer||Maximum allowed number of template sequence.||
 ||DEBUG_FILE||NO DEFAULT||String||Debug message file path.||
+||MISMATCHES||4||Integer||Number of mismatches allowed||
+||MEMORY_LIMIT||1024||Maximum memory you allow in _MB_||
+||EXIT||NO DEFAULT||NO VALUE||Exit signal||
 
+=== Detailed Information ===
+
+====FILE_NAME====
+You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.* After you specify the input read set by this field, following file names will be automatically generated: 
+  * _FILE_NAME_`_`template for _template sequences_
+  * _FILE_NAME_`_`contig for _contigs_
+  * _FILE_NAME_`_`refined for `refined read set`.
+These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally. The volatile files are as follows.
+  * _FILE_NAME_`_`super_edge for _super edges_; actually this file
 ====K====
 K-mer length which is a sequence length of an edge. Surely, after constructing super-edge, the super-edge may have longer than _Kbp_ in length.
 ====INIT_LAYER====
@@ -58,12 +73,4 @@ The maximum allowed contig length. If the graph is very complex, the longer is n
 Actually, WEAV doesn't produce any contig which is shorter than the edge length (K-mer), so the default would be _K_. However, you can specify this value to say
 
 
-DEBUG_FILE=./debug_message/s_short.fa
-MISMATCHES=10
-MEMORY_LIMIT=9000
-EXIT
 
-You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.* After you specify the input read set by this field, following file names will be automatically generated: 
-  * _FILE_NAME_`_`template for _template sequences_
-  * _FILE_NAME_`_`contig for _contigs_
-  * _FILE_NAME_`_`refined for `refined read set`. These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally. The volatile files are as follows. _FILE_NAME_`_`super_edge for _super edges_; actually this file ||
