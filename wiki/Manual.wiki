@@ -55,7 +55,7 @@ Short summary is in the following table and the detailed information will follow
 
 
 === Detailed Information ===
-====FILE_NAME====
+_====FILE_NAME====_
 You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.* After you specify the input read set by this field, following file names will be automatically generated: 
   * '_FILE_NAME_`_`template' for _template sequences_ which is super set of contig.
 Example:
@@ -94,6 +94,4 @@ Along with `INIT_LAYER`, this specify the size of layers except `INIT_LAYER`.
 The maximum allowed contig length. If the graph is very complex, the longer is not a good choice. If you can, the best estimated target sequence length would be the best which reduce the running time.
 ====MIN_LEN====
 Actually, WEAV doesn't produce any contig which is shorter than the edge length (K-mer), so the default would be _K_. However, you can specify this value to say
-
-
 
