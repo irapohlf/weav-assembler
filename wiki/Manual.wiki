@@ -1,9 +1,9 @@
 #summary One-sentence summary of this page.
 If you have any question, please send an email to Sungje Cho (sungjech@usc.edu) including any kind of error messages and input/output files if possible.
 
-= Introduction =
+== Introduction ==
 
-Add your content here.
+WEAV uses config.in file to set parameters, input and output files. However, it also allows you to use arguments list for your convenience. For example, you may specify K-mer length (_K_, `K`), output file name, maximum length
 
 
 = Details =
