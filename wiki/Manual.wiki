@@ -3,7 +3,23 @@ If you have any question, please send an email to Sungje Cho (sungjech@usc.edu) 
 
 == Introduction ==
 
-WEAV uses config.in file to set parameters, input and output files. However, it also allows you to use arguments list for your convenience. For example, you may specify K-mer length (_K_, `K`), output file name, maximum length
+WEAV uses config.in file to set parameters, input and output files. However, it also allows you to use arguments list for your convenience. For example, you may specify K-mer length (`K=35`), debug message file name (`DEBUG_FILE=./debug_message/test`), maximum length (`MAX_LEN=10000`), and so on. You want to keep all the other parameters but want to change K-mer length to 50. Then, you can use command line to change the parameter.
+
+{{{
+./weav K=50
+}}}
+
+Or, if config.in file has everything you want, just type it as follows.
+
+{{{
+./weav
+}}}
+
+You can type what ever parameters like,
+
+{{{
+./weav K= 50 FILE_NAME=./data/test_file DEBUG_FILE=./debug_message/debug_test
+}}}
 
 
 = Details =
