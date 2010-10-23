@@ -3,7 +3,8 @@
 
 You can test WEAV using `test_read_set.tar.gz` from [http://code.google.com/p/weav-assembler/downloads/list Downloads]. Do the followings.
   * Download `test_read_set.tar.gz`
-  * {{{
+  * 
+{{{
 > tar xvfz test_read_set.tar.gz 
 test_read_set/
 test_read_set/ABR_test_read_set.fa
