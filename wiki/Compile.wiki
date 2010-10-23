@@ -1,1 +1,14 @@
 #summary Compilation Guide
+#labels Featured,Phase-Deploy
+
+==Environment==
+
+===GCC Compiler===
+We tested two version of GCC.
+{{{
+gcc version 4.5.0 20100604 [gcc-4_5-branch revision 160292] (SUSE Linux)
+}}}
+and,
+{{{
+gcc version 4.3.3 (GCC)
+}}}
