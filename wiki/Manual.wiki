@@ -1,4 +1,5 @@
 #summary General User Guide.
+#labels Featured,Phase-Deploy
 If you have any question, please send an email to Sungje Cho (sungjech@usc.edu) including any kind of error messages and input/output files if possible.
 
 == Introduction ==
@@ -126,5 +127,3 @@ WEAV uses only the mapping information having mismatches less than or equal to t
 WEAV tried to show you the predicted memory usage in the very early stage. However, you may not be able to check the assembly process, and if WEAV uses too much memory, the whole system may be crashed. To be free from this danger, you may specify the maximum memory you allow in _megabyte_. If WEAV consumes this much memory, it will be automatically terminated with a message.
 ====_EXIT_====
 WEAV stops to read parameters after _EXIT_.
-
-
