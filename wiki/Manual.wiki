@@ -68,6 +68,15 @@ AGAAGTTGATATATAAAATTAACCATCACAGAAGTCTTCCCAAAA...
 }}}
 This is in FASTA format, and the header says index and the length of the template sequence.
   * '_FILE_NAME_`_`contig' for _contigs_; by our estimation. We propose some of template sequences (possibly with some error correction) as contig.
+Example:
+{{{
+>0 831bp 12.6134%
+CAATATTTGTTTTTTCAGGGGATCTTCTCTGGATCAAGCAATGGT...
+>1 942bp 12.9122%
+CGTGGGCAGGAGGGCTGGAAAAGCCGGCGCTGGAGCGGGAACGGG...
+...
+}}}
+This is also in FASTA format, and the header says index, length and abundance level of the sequence. Note: the abundance level is different from coverage and we plan to add coverage information in the next update.
   * '_FILE_NAME_`_`refined' for `refined read set`.
 Example:
 {{{
@@ -79,18 +88,37 @@ Example:
 This means the first read has 3 copies in the read set, the second has 1 copy, and so on.
 These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally.* The volatile files are as follows.
   * '_FILE_NAME_`_`super_edge' for _super edges_; actually this file represent the final super-edge de Bruijn graph. If WEAV isn't terminated, you can check this file to see whether the graph is complex or not. If the graph is too complex, it can be the reason why WEAV isn't terminated and you can change paramters to make graph simpler.
-  * '_FILE_NAME_`_`def'
-  * '_FILE_NAME_`_`u.fa'
-  * '_FILE_NAME_`_`t`_`read.fa'
-  * '_FILE_NAME_`_`index'
-  * '_FILE_NAME_`_`mapping'
-====K====
+Example:
+{{{
+>SINGLETON (in=0,out=0,len=221,cov=2.48,1:1)
+AAAAAAAGTTTGGCGAAAAGAAGCGGCGCTGGTACAGTCGCGCCAACGCAAAATCGAGAGAGCGCCTTGAGCGGCCGTCAGGCTTCGCGCGGCGCCATGGTTGAGACAAGTGAAAGACCCCGATCACGGCGAGAAGCCGTCTGAATCCGGGGCGTCGGCAGCAGGCCGCAGCGAGGCGCGCACAGGCGCCCCCCCGGGGCGGGGCGGGGGGAGGAGGAGGG
+>SINGLETON (in=0,out=0,len=332,cov=1.57,1:1)
+AAAAAACACCGCCGTGAGGCAGAGGAAGCCGGTAACGGCCATATACATCGGACCGGTCCCAAGGTCGGCCATCACCGTCAGCGACAGGATACCGCCGATCATGAACAGGACGAGAAGGACCGTGAGCGGAGCCGTGGCACGGGAGATCCTGAGGCCGAAAAGCGCCCAGAGGCCGATGAGCCCCGCCATGAAGACCTCGTAGGGCGCGGGCTCGGCGATGACGAACCCGGACAGAAAGACGCCGATCGTCACCAGGCAGGAGCCGACGAGCGAAATCGCGGCAAGCTGCGGGCGAAGGATAACCGGCCGCGATGCGGTGACCGCGGTCAATA
+...
+}}}
+FASTA header shows: type of the edge (# in edge, # out edge, length, coverage, in weight:out weight). During super edge construction many edges would combined into a super-edge, and the weight of the first and the last edges are represented here.
+  * '_FILE_NAME_`_`def' for saving read set without dead-end reads which is similar to refined read set.
+  * '_FILE_NAME_`_`u.fa' for saving unique reads in FASTA format. In the refined read set, each read has a copy number. But, in this file, all the duplicated reads are deleted and maintains only one copy for each read. That is, each read of refined read set becomes a FASTA entry in this file.
+  * '_FILE_NAME_`_`t`_`read.fa' for reads from template sequences.
+  * '_FILE_NAME_`_`index' for PerM index file.
+  * '_FILE_NAME_`_`mapping' for PerM mapping output (see [http://code.google.com/p/perm/ PerM]). All of above 4 files are related to the PerM mapping.
+====_K_====
 K-mer length which is a sequence length of an edge. Surely, after constructing super-edge, the super-edge may have longer than _Kbp_ in length.
-====INIT_LAYER====
+====_INIT_LAYER_====
 If partition-ligation method is required, WEAV would partition the graph into several layers. This is the size of initial layer in _bp_.
-====INTER_LAYER====
+====_INTER_LAYER_====
 Along with `INIT_LAYER`, this specify the size of layers except `INIT_LAYER`.
-====MAX_LEN====
+====_MAX_LEN_====
 The maximum allowed contig length. If the graph is very complex, the longer is not a good choice. If you can, the best estimated target sequence length would be the best which reduce the running time.
-====MIN_LEN====
+====_MIN_LEN_====
 Actually, WEAV doesn't produce any contig which is shorter than the edge length (K-mer), so the default would be _K_. However, you can specify this value to say
+====_MAX_NUM_TEMP_====
+WEAV may not be able to keep all the template sequences because of memory and running time. You can specify the number of maximum template sequences WEAV can save. If the graph infers more template sequences than this number, WEAV will start to use partition-ligation method.
+====_DEBUG_FILE_====
+Not many information would be printed in terminal, and detailed information would be saved in this file.
+====_MISMATCHES_====
+WEAV uses only the mapping information having mismatches less than or equal to this number.
+====_MEMORY_LIMIT_====
+WEAV tried to show you the predicted memory usage in the very early stage. However, you may not be able to check the assembly process, and if WEAV uses too much memory, the whole system may be crashed. To be free from this danger, you may specify the maximum memory you allow in _megabyte_. If WEAV consumes this much memory, it will be automatically terminated with a message.
+====_EXIT_====
+WEAV stops to read parameters after _EXIT_.
