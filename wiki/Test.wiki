@@ -1,0 +1,20 @@
+#summary Test Example
+#labels Featured
+
+You can test WEAV using `test_read_set.tar.gz` from [http://code.google.com/p/weav-assembler/downloads/list Downloads]. Do the followings.
+  * Download `test_read_set.tar.gz`
+  * {{{
+> tar xvfz test_read_set.tar.gz 
+test_read_set/
+test_read_set/ABR_test_read_set.fa
+test_read_set/config.in
+> ./weav
+}}}
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
