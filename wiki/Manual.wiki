@@ -25,10 +25,14 @@ See `Config File` for explanation about each field name.
 
 == Definitions ==
 
-||read set||This is a file having reads (a.k.a. fragments) from a target sequence you want to reconstruct. *Currently, we only allow FASTA format and all the bases should be A, G, C or T (not a, g, c or t).*||
-||contig||This is a reconstructed sequence using the read set you've specified.||
-||template sequence||WEAV may have many candidate sequences to be contig. This is different point from the other de Bruijn assemblers. Because they don't travel the graph and they produced sequences of super-edges or super-node, they can say all the sequences may be correct. However, WEAV explicitly _travels_ the graph. So, there might be chimeric sequences, there might be many similar sequences, and so on. Therefore, WEAV produces _template sequences_ first (although the naming is not appropriate), and then tries to select some of them as _contig_. *However, what we _estimate_ which one would be contig means it can be wrong. So, you can think template sequences includes full information about the WEAV assembly.*||
-||super edge||WEAV uses _super edge_; that is, WEAV tries to simplify a simple path without branch in the middle to a super edge.||
+===read set===
+This is a file having reads (a.k.a. fragments) from a target sequence you want to reconstruct. *Currently, we only allow FASTA format and all the bases should be A, G, C or T (not a, g, c or t).*
+===contig===
+This is a reconstructed sequence using the read set you've specified.
+===template sequence===
+WEAV may have many candidate sequences to be contig. This is different point from the other de Bruijn assemblers. Because they don't travel the graph and they produced sequences of super-edges or super-node, they can say all the sequences may be correct. However, WEAV explicitly _travels_ the graph. So, there might be chimeric sequences, there might be many similar sequences, and so on. Therefore, WEAV produces _template sequences_ first (although the naming is not appropriate), and then tries to select some of them as _contig_. *However, what we _estimate_ which one would be contig means it can be wrong. So, you can think template sequences includes full information about the WEAV assembly.*
+===super edge===
+WEAV uses _super edge_; that is, WEAV tries to simplify a simple path without branch in the middle to a super edge.
 
 == Config File ==
 
@@ -91,9 +95,9 @@ These three files you can find in the directory where the read set is. *But ther
 Example:
 {{{
 >SINGLETON (in=0,out=0,len=221,cov=2.48,1:1)
-AAAAAAAGTTTGGCGAAAAGAAGCGGCGCTGGTACAGTCGCGCCAACGCAAAATCGAGAGAGCGCCTTGAGCGGCCGTCAGGCTTCGCGCGGCGCCATGGTTGAGACAAGTGAAAGACCCCGATCACGGCGAGAAGCCGTCTGAATCCGGGGCGTCGGCAGCAGGCCGCAGCGAGGCGCGCACAGGCGCCCCCCCGGGGCGGGGCGGGGGGAGGAGGAGGG
+AAAAAAAGTTTGGCGAAAAGAAGCGGCGCTGGTACAGTCGCGCCA...
 >SINGLETON (in=0,out=0,len=332,cov=1.57,1:1)
-AAAAAACACCGCCGTGAGGCAGAGGAAGCCGGTAACGGCCATATACATCGGACCGGTCCCAAGGTCGGCCATCACCGTCAGCGACAGGATACCGCCGATCATGAACAGGACGAGAAGGACCGTGAGCGGAGCCGTGGCACGGGAGATCCTGAGGCCGAAAAGCGCCCAGAGGCCGATGAGCCCCGCCATGAAGACCTCGTAGGGCGCGGGCTCGGCGATGACGAACCCGGACAGAAAGACGCCGATCGTCACCAGGCAGGAGCCGACGAGCGAAATCGCGGCAAGCTGCGGGCGAAGGATAACCGGCCGCGATGCGGTGACCGCGGTCAATA
+AAAAAACACCGCCGTGAGGCAGAGGAAGCCGGTAACGGCCATATA...
 ...
 }}}
 FASTA header shows: type of the edge (# in edge, # out edge, length, coverage, in weight:out weight). During super edge construction many edges would combined into a super-edge, and the weight of the first and the last edges are represented here.
@@ -122,3 +126,5 @@ WEAV uses only the mapping information having mismatches less than or equal to t
 WEAV tried to show you the predicted memory usage in the very early stage. However, you may not be able to check the assembly process, and if WEAV uses too much memory, the whole system may be crashed. To be free from this danger, you may specify the maximum memory you allow in _megabyte_. If WEAV consumes this much memory, it will be automatically terminated with a message.
 ====_EXIT_====
 WEAV stops to read parameters after _EXIT_.
+
+
