@@ -1,4 +1,4 @@
-#General User Guide.
+#summary General User Guide.
 If you have any question, please send an email to Sungje Cho (sungjech@usc.edu) including any kind of error messages and input/output files if possible.
 
 == Introduction ==
