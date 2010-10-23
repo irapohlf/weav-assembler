@@ -46,10 +46,3 @@ ABR_test_read_set.fa            ABR_test_read_set.fa_refined
 ABR_test_read_set.fa_contig     ABR_test_read_set.fa_template
 ABR_test_read_set.fa_euler.txt  config.in
 }}}
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
