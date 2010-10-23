@@ -1,5 +1,4 @@
 #summary Test Example
-#labels Featured
 
 You can test WEAV using `test_read_set.tar.gz` from [http://code.google.com/p/weav-assembler/downloads/list Downloads]. Do the followings.
   * Download `test_read_set.tar.gz`
@@ -9,9 +8,44 @@ You can test WEAV using `test_read_set.tar.gz` from [http://code.google.com/p/we
 test_read_set/
 test_read_set/ABR_test_read_set.fa
 test_read_set/config.in
-> ./weav
+
 }}}
 
+Then, you can file following files in the directory.
+
+{{{
+> ./weav
+CAU.:   Just before reading read set: 1.53 MB memory (0.43 MB in stack) consumed.
+CAU.:   Read data files: 0 seconds and 14.81 MB memory (13.62 MB in stack) consumed.
+CAU.:   You may need at least 18MB of memory. If you do not have enough memory, the program may be crashed.
+CAU.:   Construct edges: 1 seconds and 42.96 MB memory (41.91 MB in stack) consumed.
+CAU.:   You may need at least 9MB of memory. If you do not have enough memory, the program may be crashed.
+CAU.:   Clean dead-ends: 1 seconds and 43.11 MB memory (41.91 MB in stack) consumed.
+CAU.:   Construct super-edge graph: 1 seconds and 53.74 MB memory (52.50 MB in stack) consumed.
+
+Info 3: Reference ./ABR_test_read_set.fa_u.fa has 486772 bases.
+Hash record  uses 0 seconds.                                                  
+Info 3: Sort buckets with 8 CPUs                                          .
+Info 3: Successfully make the index                                        
+Save index table  uses 0 seconds.                                         
+Info 3: 8 CPUs                                          .
+Mapping single end long reads uses 0 seconds.                                         
+Info 3: Successfully read in the index.                                         
+
+Info 3: 8 CPUs                                          .
+Mapping ./ABR_test_read_set.fa_t_read_F3 (100-bp reads) with F3 seed.
+Deal read no. 20326 in ./ABR_test_read_set.fa_t_read.fa.
+./ABR_test_read_set.fa_t_read_F3, Reads:, Filtered#, 0, Kept#, 20325, Mapped#, 8393, Multi-mapped#, 2057                                         
+./ABR_test_read_set.fa_t_read_F3,_ Sub0, 5521, Sub1, 2132, Sub2, 579, Sub3, 137, Sub4, 18, Sub5, 6, Sub6, 0, Sub7, 0, Sub8, 0, Sub9, 0, Sub10, 0, 
+Mapping single end long reads uses 0 seconds.                                         
+CAU.:   EM Start: 55.52 MB memory (126.13 MB in stack) consumed and the current local time is: Sat Oct 23 00:51:37 2010
+
+CAU.:   Euler Graph Traveling: 13 seconds and 83.21 MB memory (137.66 MB in stack) consumed.
+> ls
+ABR_test_read_set.fa            ABR_test_read_set.fa_refined
+ABR_test_read_set.fa_contig     ABR_test_read_set.fa_template
+ABR_test_read_set.fa_euler.txt  config.in
+}}}
 
 = Details =
 
