@@ -21,10 +21,9 @@ You can type what ever parameters like,
 ./weav K= 50 FILE_NAME=./data/test_file DEBUG_FILE=./debug_message/debug_test
 }}}
 
+See `Config File` for explanation about each field name.
 
-= Details =
+== Config File ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+WEAV assumes `config.in` in the directory where WEAV is working. So, even if you want to use command line arguments, you should have a config.in file in the directory. You can find the config.in file from the package you can download from [http://code.google.com/p/weav-assembler/downloads/list Downloads]
+
