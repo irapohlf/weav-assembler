@@ -50,7 +50,7 @@ Short summary is in the following table and the detailed information will follow
 ||MAX_NUM_TEMP||10000||Integer||Maximum allowed number of template sequence.||
 ||DEBUG_FILE||NO DEFAULT||String||Debug message file path.||
 ||MISMATCHES||4||Integer||Number of mismatches allowed||
-||MEMORY_LIMIT||1024||Maximum memory you allow in _MB_||
+||MEMORY_LIMIT||1024||Integer||Maximum memory you allow in _MB_||
 ||EXIT||NO DEFAULT||NO VALUE||Exit signal||
 
 
@@ -58,14 +58,23 @@ Short summary is in the following table and the detailed information will follow
 ====FILE_NAME====
 You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.* After you specify the input read set by this field, following file names will be automatically generated: 
   * '_FILE_NAME_`_`template' for _template sequences_ which is super set of contig.
+Example:
+{{{
+>0 122
+AACTGAGAGGGTTACTGAATCTTAGTATCTCGACTGAAAAGCCAA...
+>1 172
+AGAAGTTGATATATAAAATTAACCATCACAGAAGTCTTCCCAAAA...
+...
+}}}
+This is in FASTA format, and the header says index and the length of the template sequence.
   * '_FILE_NAME_`_`contig' for _contigs_; by our estimation. We propose some of template sequences (possibly with some error correction) as contig.
-  * '_FILE_NAME_`_`refined' for `refined read set`. Refined read set look as follows.
+  * '_FILE_NAME_`_`refined' for `refined read set`.
+Example:
 {{{
 3,AAAAATAGGTCATCAAAAGGAAAAAAAATAACTTTGATTAACTAGTGTTAAACAAAAAATAGGTTTACTAAATATGTTAATCTATTCTTTTAACATAAGC
 1,AAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACTTTTGGGTCCACGTGGCAATTCTCTGAAGCGTTTACAAGAAGAAACCTTGACAAAAATGTCAATC
 3,AAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACTTTTGGGTCCACGTGGCAATTCTCTGAAGCGTTTACAAGAAGAAACCTTGACAAAAATGTCCATC
-1,AAAAGCACTGAGCCAAGGAGGAGATACAGGGTCTGTAAGCTTTACAAAGGGCAGCAGCTAAACCCCTCTTAATTCAGTGGAGCTGGTAGAGATGCTGGGG
-2,AAAAGTACATCGATGTGGTGATTAATAAGAACATGAAGCTGGGACAGAAAGTGTTAATTCCCGTAAAACAGTTCCCTAAGTTCAACTTTGTGGGGAAACT
+...
 }}}
 This means the first read has 3 copies in the read set, the second has 1 copy, and so on.
 These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally.* The volatile files are as follows.
