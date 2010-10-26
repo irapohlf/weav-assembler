@@ -26,8 +26,7 @@ We tested two linux kernel releases.
 }}}
 
 ===Library===
-  * *libPerM.a:* I am using PerM version 0.2.9.3. Because there are many new versions, I will update it if needed later.
-You can check the information of PerM from [http://code.google.com/p/perm/downloads/list PerM]. *However, you do not need to know anything about PerM to use WEAV.*
+  * *libPerM.a:* I am using PerM version 0.2.9.3. Because there are many new versions, I will update it if needed later. You can check the information of PerM from [http://code.google.com/p/perm/downloads/list PerM]. *However, you do not need to know anything about PerM to use WEAV.*
 
 == Compile ==
   # Download the source tar file from [http://code.google.com/p/weav-assembler/downloads/list Download].
