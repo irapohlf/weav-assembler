@@ -13,6 +13,8 @@ gcc version 4.5.0 20100604 [gcc-4_5-branch revision 160292] (SUSE Linux)
 gcc version 4.3.3 (GCC)
 }}}
 
+Because PerM uses [http://en.wikipedia.org/wiki/OpenMP OpenMP], your compiler should support it.
+
 ===Linux Kernel===
 We tested two linux kernel releases.
 {{{
@@ -24,7 +26,7 @@ We tested two linux kernel releases.
 }}}
 
 ===Library===
-I am using PerM version 0.2.9.3. Because there are many new versions, I will update it if needed later.
+  * *libPerM.a:* I am using PerM version 0.2.9.3. Because there are many new versions, I will update it if needed later.
 You can check the information of PerM from [http://code.google.com/p/perm/downloads/list PerM]. *However, you do not need to know anything about PerM to use WEAV.*
 
 == Compile ==
