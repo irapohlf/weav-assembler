@@ -24,3 +24,46 @@ We tested two linux kernel releases.
 }}}
 
 ===Library===
+
+== Compile ==
+  # Download the source tar file from [http://code.google.com/p/weav-assembler/downloads/list Download].
+  # 'tar xvfz the_file'
+{{{
+> tar xvfz weav_v0.1_20101020.tar.gz
+> ls
+config.in  data/  debug_message/  makefile  Source0.2.9.3/  src/  weav_v0.1_20101020.tar.gz
+}}}
+  # You can find 4 directories, but data and debug`_`message are not important. *src/* contains main functionalities of WEAV and *Source0.2.9.3/* contains PerM library.
+  # Compile it
+{{{
+> make
+make[1]: Entering directory `/home/secondHD/irapohlf/src/RNA_ASSEMBLY/check_weav/Source0.2.9.3'
+g++ -O2 -ggdb -Wall -fopenmp -c -ggdb -Wall -fopenmp  AlignmentsQ.cpp Filename.cpp GenomeNTdata.cpp ReadInBits.cpp PerM.cpp chromosomeNTdata.cpp bitsOperationUtil.cpp FileOutputBuffer.cpp HashIndexT.cpp ReadInBitsSet.cpp SeedPattern.cpp boolFlagArray.cpp GenomeInBits.cpp Index_Table.cpp ReadsMapping.cpp PairedReadsMapping.cpp  ShortReadUtil.cpp chdir.cpp Genome_Index.cpp MismatchScores.cpp stdafx.cpp Flags.cpp ParseReadsOpts.cpp ColorSpaceRead.cpp Genome_Index_Table.cpp ParameterList.cpp ReadsMappingStats.cpp FileInputBuffer.cpp Genome_Index_TableQ.cpp ReadsQualScores.cpp ChrIndex2GeneName.cpp ReadsFileParser.cpp PairedReadsSet.cpp MappingResult.cpp refInBinFile.cpp -lm -lstdc++ 
+ar cr libPerM.a *.o
+ranlib libPerM.a
+make[1]: Leaving directory `/home/secondHD/irapohlf/src/RNA_ASSEMBLY/check_weav/Source0.2.9.3'
+make[1]: Entering directory `/home/secondHD/irapohlf/src/RNA_ASSEMBLY/check_weav/src'
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o euler.o euler.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o config.o config.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o read_set.o read_set.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o edge_table.o edge_table.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o perm.o perm.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o utils.o utils.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o graph_travel.o graph_travel.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o uniform.o uniform.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o alignment.o alignment.c
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o em.o em.c
+g++ -o weav euler.o config.o read_set.o edge_table.o perm.o utils.o graph_travel.o uniform.o alignment.o em.o -lm -L../Source0.2.9.3 -lPerM -fopenmp
+g++ -ggdb -Wall -O2 -D__RELEASE__   -c -o align.o align.c
+g++ -o align align.o alignment.o -lm -L../Source0.2.9.3 -lPerM -fopenmp
+ctags *.[ch]
+make[1]: Leaving directory `/home/secondHD/irapohlf/src/RNA_ASSEMBLY/check_weav/src'
+}}}
+  # Now you have the weav binary in *src/* and PerM library (libPerM.a) in *Source0.2.9.3*. As you can see from following, weav binary is shown in the directory.
+{{{
+> ls
+config.in  data/  debug_message/  makefile  Source0.2.9.3/  src/  weav*  weav_v0.1_20101020.tar.gz
+}}}
+  # I don't want to bother to copy weav binary to your system directory by 'make install'. So, my make file does not have 'install'.
+
+  
