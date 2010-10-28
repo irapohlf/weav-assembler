@@ -1,0 +1,46 @@
+#summary Let's study the bug we've met.
+
+=== Introduction ===
+
+Unfortunately, the WEAV you've gotten is not stabilized yet. We are very sorry about it, and we beg your help to make WEAV stable.
+
+=== Log Messages ===
+You can find log messages from the file you've set with the field name `DEBUG_MESSAGE` in your config.in file. If you want to see all the messages from your screen, you need to change your make file.
+
+Your WEAV directory might be like follows.
+{{{
+> ls
+config.in  debug_message/  Source0.2.9.3/  test_read_set/
+data/      makefile        src/            weav*
+}}}
+Let's go in to *src/* directory.
+{{{
+> cd src
+> ls
+algorithm.c  common.h      edge_table.h  gpl-3.0.txt     perm.o      uniform.o
+align*       config.c      edge_table.o  graph_travel.c  read_set.c  utils.c
+align.c      config.h      em.c          graph_travel.h  read_set.h  utils.h
+alignment.c  config.o      em.h          graph_travel.o  read_set.o  utils.o
+alignment.h  copy.c        em.o          makefile        tags        weav*
+alignment.o  del/          euler.c       perm.c          uniform.c
+align.o      edge_table.c  euler.o       perm.h          uniform.h
+}}}
+Let's change makefile. You can find the following line from the makefile.
+{{{
+CFLAGS =    -ggdb -Wall -O2 -D__RELEASE__
+}}}
+Change it like below.
+{{{
+CFLAGS =    -ggdb -Wall -O2 #-D__RELEASE__
+}}}
+And, then 'make clean', change directory to WEAV, and 'make' it again.
+{{{
+> make clean
+> cd ..
+> ls
+config.in  debug_message/  Source0.2.9.3/  test_read_set/
+data/      makefile        src/            weav*
+> make
+}}}
+Actually, WEAV produces many many log messages, but we 
+intentionally mute them.
