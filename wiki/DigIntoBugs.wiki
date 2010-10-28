@@ -11,7 +11,7 @@ Unfortunately, the WEAV you've gotten is not stabilized yet. We are very sorry a
 === Bug's ===
   # *Segmentation Fault:* I hate this one, but still there can be the case. To make matters worse, you may not find where the `segmentation fault` was happened by log message because the file buffer could not be flushed properly and closed properly. In this case, it will be better to see all the messages from the screen. Normally, you can see more messages if you print the messages to your screen. Please check the following *Log Message* section below.
   # If it is not the *Segmentation Fault* error, it might be easy to find.
-    * Memory Problem: WEAV would exit when it uses more memory than you specified in `config.in` with `MEMORY_LIMIT`. Or, if you don't have less memory than you specified, it might produce *segmentation fault*. Originally, if you don't change `MEMORY_LIMIT` part, it would be 9000MB (8.79GB).
+  * Memory Problem: WEAV would exit when it uses more memory than you specified in `config.in` with `MEMORY_LIMIT`. Or, if you don't have less memory than you specified, it might produce *segmentation fault*. Originally, if you don't change `MEMORY_LIMIT` part, it would be 9000MB (8.79GB).
 
 === Log Messages ===
 You can find log messages from the file you've set with the field name `DEBUG_FILE` in your config.in file. If you want to see all the messages from your screen, you need to change your make file.
