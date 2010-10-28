@@ -4,8 +4,15 @@
 
 Unfortunately, the WEAV you've gotten is not stabilized yet. We are very sorry about it, and we beg your help to make WEAV stable.
 
+==== Brief Suggestion ====
+  * *If it is `segmentation fault`,* please follow *Log Message* section below, and send me the last few lines of log message and the log file which was specified by `DEBUG_FILE` in your `config.in`.
+  * *Else,* please send me the log file which was specified by `DEBUG_FILE` in your `config.in`.
+
+=== Bug's ===
+  # *Segmentation Fault:* I hate this one, but still there can be the case. To make matters worse, you may not find where the `segmentation fault` was happened by log message because the file buffer could not be flushed properly and closed properly. In this case, it will be better to see all the messages from the screen. Normally, you can see more messages if you print the messages to your screen. Please check the following *Log Message* section below.
+
 === Log Messages ===
-You can find log messages from the file you've set with the field name `DEBUG_MESSAGE` in your config.in file. If you want to see all the messages from your screen, you need to change your make file.
+You can find log messages from the file you've set with the field name `DEBUG_FILE` in your config.in file. If you want to see all the messages from your screen, you need to change your make file.
 
 Your WEAV directory might be like follows.
 {{{
