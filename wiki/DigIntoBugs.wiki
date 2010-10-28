@@ -1,4 +1,5 @@
 #summary Let's study the bug we've met.
+#labels Featured
 
 === Introduction ===
 
@@ -8,10 +9,12 @@ Unfortunately, the WEAV you've gotten is not stabilized yet. We are very sorry a
   * *If it is `segmentation fault`,* please follow *Log Message* section below. As it guides you, please print all the messages to the screen, and send me the last few lines of log message and the log file which was specified by `DEBUG_FILE` in your `config.in`.
   * *Else,* please send me the log file which was specified by `DEBUG_FILE` in your `config.in`.
 
-=== Bug's ===
+=== Bugs and Errors ===
   # *Segmentation Fault:* I hate this one, but still there can be the case. To make matters worse, you may not find where the `segmentation fault` was happened by log message because the file buffer could not be flushed properly and closed properly. In this case, it will be better to see all the messages from the screen. Normally, you can see more messages if you print the messages to your screen. Please check the following *Log Message* section below.
   # If it is not the *Segmentation Fault* error, it might be easy to find.
   * Memory Problem: WEAV would exit when it uses more memory than you specified in `config.in` with `MEMORY_LIMIT`. Or, if you don't have less memory than you specified, it might produce *segmentation fault*. Originally, if you don't change `MEMORY_LIMIT` part, it would be 9000MB (8.79GB).
+  * Invalid Bases: Unfortunately, WEAV understands A, G, C and T only. Even, it cannot understand a, g, c and t. So, you need to pre-process your read set to convert to capitals and remove reads having invalid bases such as N if needed. We promise that we will change this as soon as possible. However, note that pre-processing is not a choice, it is mandatory to get maximal performance for whatever assembler including WEAV.
+  * Read Set Location: Please keep in mind that config.in we've provided assumes that read set might be in *data/* directory and log message in *debug_message/* directory. So, you must either place your read set in *data/* directory or change config.in file.
 
 === Log Messages ===
 You can find log messages from the file you've set with the field name `DEBUG_FILE` in your config.in file. If you want to see all the messages from your screen, you need to change your make file.
