@@ -1,6 +1,5 @@
 #summary Everything for WEAV-CLUSTERING
-
-#sidebar TableOfContents
+<wiki:toc max_depth="3" />
 
 == Introduction ==
 
