@@ -1,4 +1,5 @@
 #summary Everything for WEAV-CLUSTERING
+#labels Featured
 <wiki:toc max_depth="3" />
 
 = Introduction =
@@ -52,7 +53,7 @@ Thus we propose a naive clustering algorithm as follows.
 
 How to run the WEAV-CLUSTERING is closely related to the *Algorithm* discussed above. You can compare the following steps with above *Algorithm*.
 
-== Construct K-mer graph ==
+== Construct K-mer Graph ==
 You need `CONSTRUCT_KMER_TABLE` is on. In the contig.in you've gotten from tar ball, `CONSTRUCT_KMER_TABLE` would be commented out.
 {{{
 FILE_NAME=./data/test.reads
@@ -76,7 +77,13 @@ copy.c     edge_table.o    gpl-3.0.txt  uniform.c   weav_clustering*
 }}}
 
 As you can see, edgeinfo was generated from `./weav_clustering CONSTRUCT_KMER_TABLE`.
-  # Remove very heavy edges to remove effect of repetitive regions.
+
+== Remove Heavy Edges ==
+
+Weight one edges were removed already from *Construct K-mer Graph*, so we only need to care heavy edges here. This process is not automatic because the definition of *_heavy_* depends on many factors. So, users should define what is heavy. You can check the weight of edges from *edgeinfo* file.
+As you can see from below, the file shows all the K-mers (here we used 40-mer) and their weight (it was sorted by the weight from light to heavy). You may check two things.
+  * How heavy the edges are.
+  * Which edge have heavy weight. For example, if there are many simple edges (AGAG...AGAG, AAAAAA....AAATT, and so on), it is better pre-process the read set. Surely, you can remove heavy edges by following way, but we recommend to pre-process because we think simple edges are not necessarily heavy. And, there can be other characteristics you may find from the edgeinfo.
 {{{
 > head edgeinfo
 2,AAAAAAAAAGACAAGGAGAAAAAAGAGATCAAAAAGGAGA
@@ -90,6 +97,49 @@ As you can see, edgeinfo was generated from `./weav_clustering CONSTRUCT_KMER_TA
 2,AAAAAAAATTCTCCGCCCCTTTCCTCGATCTCGCTCCCCC
 2,AAAAAAACAAAAACAGAATTTGAGAACCTTGGACCACTCC
 }}}
+
+Anyway, decide how you would define *_heavy_*. If you decide to remove all the edges having weight 300 or higher. Do the following.
+{{{
+> ./extract 300
+> ls
+common.h   debug_message/  euler.o      read_set.h  utils.h
+config.c   edgefp          extract*     read_set.o  utils.o
+config.h   edgeinfo        extract.c    tags        weav_clustering*
+config.in  edge_table.c    extract.o    uniform.c
+config.o   edge_table.h    gpl-3.0.txt  uniform.h
+copy.c     edge_table.o    makefile     uniform.o
+data/      euler.c         read_set.c   utils.c
+}}}
+
+Now you can find *_edgefp_*. Actually edgefp is the graph using the edges after removing heavy edges. Note that edgeinfo still has all the edges. So, if you want to change the definition of heavy, you don't need to construct K-mer graph again. Just do EXTRACT with a new upper limit value.
+
+== Cluster the Graph and the Read Set ==
+
+Now you have the graph *_edgefp_*, and you will cluster the graph and the read set.
+{{{
+> ./weav_clustering
+}}}
+
+As you can see, we deleted the argument `CONSTRUCT_KMER_TABLE`. Just by not using the argument, we can make it off because our contig.in file have it commented out.
+
+Then, in the directory where the read set was, you can find clustered read sets.
+{{{
+> ls data/
+0/  1000/  500/  bridge  drop  test.reads  test.reads_refined
+> ls data/0 | more
+cluster_0
+cluster_10
+cluster_100
+cluster_101
+cluster_102
+cluster_104
+cluster_105
+......
+}}}
+
+You can find two files _bridge_ and _drop_ and three directories `0/`, `500/` and `1000/`. We use one directory having 500 clusters because some OS does not allow to have too many files in a directory. So, we group clusters into subdirectories having at most 500 clusters. And, two files gives you,
+  * *bridge:* If two ends of a read fall into different subgraph, it cannot be joined to any of two subgraphs (in other words, clusters). Then, we collect them as a `bridge read`. You may use this read set if you want to have longer contigs.
+  * *drop:* If a cluster has only one read, there is nothing to do. So, we save all such reads in `drop`.
 
 = Config File =
 
