@@ -1,6 +1,6 @@
 #summary Everything for WEAV-CLUSTERING
 
-#sidebar
+#sidebar TableOfContents
 
 == Introduction ==
 
