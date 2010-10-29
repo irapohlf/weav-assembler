@@ -34,7 +34,7 @@ WEAV-CLUSTERING also can use both `config.in` and command line argument like WEA
 
 
 == Detailed Information ==
-===_FILE_NAME_==+
+===_FILE_NAME_===
 You may specify the read set in FASTA format. *Currently we only allow FASTA format, and reads should not have any invalid bases. WEAV only allows A,G,C and T (NOTE we don't allow a,g,c and t). We will update this feature as soon as possible.*
  After you specify the input read set by this field, following file name will be automatically generated: 
   * '_FILE_NAME_`_`refined' for `refined read set`.
