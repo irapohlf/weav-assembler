@@ -51,7 +51,9 @@ Thus we propose a naive clustering algorithm as follows.
 = Run =
 
 How to run the WEAV-CLUSTERING is closely related to the *Algorithm* discussed above. You can compare the following steps with above *Algorithm*.
-  # Construct K-mer graph. You need `CONSTRUCT_KMER_TABLE` is on. In the contig.in you've gotten from tar ball, `CONSTRUCT_KMER_TABLE` would be commented out.
+
+== Construct K-mer graph ==
+You need `CONSTRUCT_KMER_TABLE` is on. In the contig.in you've gotten from tar ball, `CONSTRUCT_KMER_TABLE` would be commented out.
 {{{
 FILE_NAME=./data/test.reads
 #REFINED_READS
