@@ -2,8 +2,12 @@
 
 == Introduction ==
 
-WEAV-CLUSTERING tries to divide a big read set into smaller read set with keeping following features.
-  *
+WEAV-CLUSTERING tries to divide a big read set into smaller read set with keeping following features as possible as we can.
+  * A clustered read set has not so many genes together. We hope a clustered read set has only one gene.
+  * All the isoform of a gene would be in a clustered read set if exist.
+{{{
+*Definition* Cluster: we will call *a clustered read set* as *a cluster*.
+}}}
 
 
 == Details ==
