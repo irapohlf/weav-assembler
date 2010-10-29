@@ -120,7 +120,7 @@ Now you have the graph *_edgefp_*, and you will cluster the graph and the read s
 > ./weav_clustering
 }}}
 
-As you can see, we deleted the argument `CONSTRUCT_KMER_TABLE`. Just by not using the argument, we can make it off because our contig.in file have it commented out.
+As you can see, we deleted the argument `CONSTRUCT_KMER_TABLE`. Just by not using the argument, we can make it off because our contig.in file has it with being commented out.
 
 Then, in the directory where the read set was, you can find clustered read sets.
 {{{
