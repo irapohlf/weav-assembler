@@ -9,15 +9,6 @@ WEAV-CLUSTERING tries to divide a big read set into smaller read set with keepin
 
 ||*Definition* Cluster: we will call *a clustered read set* as *a cluster*.||
 
-= Algorithm =
-
-Although we want to keep the above features during clustering, fortunately, this clustering step does not have to be perfect, because the assembly algorithm of WEAV can assemble multiple genes simultaneously.
-Thus we propose a naive clustering algorithm as follows.
-  # We construct a de Bruijn graph with K-tuples using the whole read set. In this graph, the edges are K-tuples, the nodes are (K-1)-tuples, and the weight of an edge is the number of the K-tuple in the read set.
-  # We remove edges with very low weight (i.e., <= 1) to eliminate random edges caused by sequencing errors, and we also remove edges with very high weight (i.e., >= 300) to eliminate edges caused by repetitive sequences. 
-  # After edge removal, the graph is fragmented into many disjoint connected components, or subgraphs, which can be identified using the DFS (depth-first-search) algorithm. 
-  # For each subgraph, we extract reads from the K-tuple edges and group them into a cluster.
-
 = Compile =
 
 Download WEAV-CLUSTERING tar ball and extract it.
@@ -47,6 +38,56 @@ config.h  copy.c     edge_table.c    euler.c       extract.c  makefile     read_
 }}}
 
 You can find two binary files: EXTRACT and WEAV_CLUSTERING.
+
+= Algorithm =
+
+Although we want to keep the above features during clustering, fortunately, this clustering step does not have to be perfect, because the assembly algorithm of WEAV can assemble multiple genes simultaneously.
+Thus we propose a naive clustering algorithm as follows.
+  # We construct a de Bruijn graph with K-tuples using the whole read set. In this graph, the edges are K-tuples, the nodes are (K-1)-tuples, and the weight of an edge is the number of the K-tuple in the read set.
+  # We remove edges with very low weight (i.e., <= 1) to eliminate random edges caused by sequencing errors, and we also remove edges with very high weight (i.e., >= 300) to eliminate edges caused by repetitive sequences. 
+  # After edge removal, the graph is fragmented into many disjoint connected components, or subgraphs, which can be identified using the DFS (depth-first-search) algorithm. 
+  # For each subgraph, we extract reads from the K-tuple edges and group them into a cluster.
+
+= Run =
+
+How to run the WEAV-CLUSTERING is closely related to the *Algorithm* discussed above. You can compare the following steps with above *Algorithm*.
+  # Construct K-mer graph. You need `CONSTRUCT_KMER_TABLE` is on. In the contig.in you've gotten from tar ball, `CONSTRUCT_KMER_TABLE` would be commented out.
+{{{
+FILE_NAME=./data/test.reads
+#REFINED_READS
+#CONSTRUCT_KMER_TABLE
+K=40
+DEBUG_FILE=./debug_message/test
+DEBUG=9
+EXIT
+}}}
+There are two ways to make `CONSTRUCT_KMER_TABLE` on; using command-line argument or change config.in file. *We recommend to use command-line argument.*
+{{{
+> ./weav_clustering CONSTRUCT_KMER_TABLE
+> ls
+common.h   data/           euler.c      makefile    uniform.h
+config.c   debug_message/  euler.o      read_set.c  uniform.o
+config.h   edgeinfo        extract*     read_set.h  utils.c
+config.in  edge_table.c    extract.c    read_set.o  utils.h
+config.o   edge_table.h    extract.o    tags        utils.o
+copy.c     edge_table.o    gpl-3.0.txt  uniform.c   weav_clustering*
+}}}
+
+As you can see, edgeinfo was generated from `./weav_clustering CONSTRUCT_KMER_TABLE`.
+  # Remove very heavy edges to remove effect of repetitive regions.
+{{{
+> head edgeinfo
+2,AAAAAAAAAGACAAGGAGAAAAAAGAGATCAAAAAGGAGA
+2,AAAAAAAAATCTACAGAACATATGATCCTTCAAGTCAAAA
+2,AAAAAAAAATGGAAGGATCTCAAGCTGATGAAAAAACTGG
+2,AAAAAAAAATTCTCCGCCCCTTTCCTCGATCTCGCTCCCC
+2,AAAAAAAAGACAAGGAGAAAAAAGAGATCAAAAAGGAGAG
+2,AAAAAAAATAAACCCTCGTTCCACAGAAGCTGCCATCAAG
+2,AAAAAAAATCTACAGAACATATGATCCTTCAAGTCAAAAA
+2,AAAAAAAATGGAAGGATCTCAAGCTGATGAAAAAACTGGA
+2,AAAAAAAATTCTCCGCCCCTTTCCTCGATCTCGCTCCCCC
+2,AAAAAAACAAAAACAGAATTTGAGAACCTTGGACCACTCC
+}}}
 
 = Config File =
 
