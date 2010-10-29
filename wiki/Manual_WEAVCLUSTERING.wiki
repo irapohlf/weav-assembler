@@ -18,6 +18,35 @@ Thus we propose a naive clustering algorithm as follows.
   # After edge removal, the graph is fragmented into many disjoint connected components, or subgraphs, which can be identified using the DFS (depth-first-search) algorithm. 
   # For each subgraph, we extract reads from the K-tuple edges and group them into a cluster.
 
+= Compile =
+
+Download WEAV-CLUSTERING tar ball and extract it.
+{{{
+> ls
+common.h  config.h   copy.c  debug_message/  edge_table.h  extract.c    makefile    read_set.h  uniform.c  utils.c
+config.c  config.in  data/   edge_table.c    euler.c       gpl-3.0.txt  read_set.c  tags        uniform.h  utils.h
+}}}
+
+Make it.
+{{{
+> make
+g++ -ggdb -Wall -O2   -c -o euler.o euler.c
+g++ -ggdb -Wall -O2   -c -o config.o config.c
+g++ -ggdb -Wall -O2   -c -o read_set.o read_set.c
+g++ -ggdb -Wall -O2   -c -o edge_table.o edge_table.c
+g++ -ggdb -Wall -O2   -c -o utils.o utils.c
+g++ -ggdb -Wall -O2   -c -o uniform.o uniform.c
+g++ -o weav_clustering euler.o config.o read_set.o edge_table.o utils.o uniform.o -lm 
+g++ -ggdb -Wall -O2   -c -o extract.o extract.c
+g++ -o extract extract.o -lm 
+ctags *.[ch]
+> ls
+common.h  config.in  data/           edge_table.h  euler.o    extract.o    read_set.c  tags       uniform.o  utils.o
+config.c  config.o   debug_message/  edge_table.o  extract*   gpl-3.0.txt  read_set.h  uniform.c  utils.c    weav_clustering*
+config.h  copy.c     edge_table.c    euler.c       extract.c  makefile     read_set.o  uniform.h  utils.h
+}}}
+
+You can find two binary files: EXTRACT and WEAV_CLUSTERING.
 
 = Config File =
 
@@ -47,7 +76,7 @@ Example:
 }}}
 This means the first read has 3 copies in the read set, the second has 1 copy, and so on.
 These three files you can find in the directory where the read set is. *But there are several volatile files which would not be if WEAV is terminated normally, but would be if WEAV is terminated abnormally.* The volatile files are as follows.
-===CONSTRUCT_KMER_TABLE===
+===_CONSTRUCT_KMER_TABLE_===
 If this field name is commented out, it means *_do not construct K-mer table, but clustering the graph and read set_*. If this field name is in the contig.in, it means *_construct K-mer table_*.
 ===_K_===
 K-mer length which is a sequence length of an edge.
