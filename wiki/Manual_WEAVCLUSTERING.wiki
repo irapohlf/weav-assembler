@@ -139,7 +139,7 @@ cluster_105
 
 You can find two files _bridge_ and _drop_ and three directories `0/`, `500/` and `1000/`. We use one directory having 500 clusters because some OS does not allow to have too many files in a directory. So, we group clusters into subdirectories having at most 500 clusters. And, two files gives you the information following.
   * *bridge:* If two ends of a read fall into different subgraph, it cannot be joined to any of two subgraphs (in other words, clusters). Then, we collect them as a `bridge read`. You may use this read set if you want to have longer contigs.
-  * *drop:* If a cluster has only one read, there is nothing to do. So, we save all such reads in `drop`.
+  * *drop:* If two end-K-mers of a read, which are edges, are not part of any sub-graphs, the read cannot be added to any clustered read set. So, these reads may be useless.
 
 = Config File =
 
