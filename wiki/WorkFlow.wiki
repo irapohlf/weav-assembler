@@ -1,12 +1,12 @@
 #summary What you may follow to get assembled contigs.
 
-= Introduction =
+== Introduction ==
 
 WEAV is for transcriptome assembly which intrinsically has ambiguities. Therefore, WEAV implicitly assumes to use WEAV-CLUSTERING together. Because of this complicated process although WEAV-CLUSTERING is just a kind of pre-processing (compared to the other assemblers, but I would say that all of assemblers asks pre-processing and the assembly quality is really depends on the pre-processing step), you may get lost in the middle of assembly process.
 
 I want to share the whole process in this page.
 
-= Work Flow =
+== Work Flow ==
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
