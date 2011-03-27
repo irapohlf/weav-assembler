@@ -26,7 +26,7 @@ _This is not yet uploaded. I will upload this as soon as possible. All the progr
 ==== Test Dataset ====
 I prepared a read set for this documentation which were sampled by 10 selected genes as follows.
 
-*Gene Symbol* || *Transcript ID* || *Rank* || *`#` Sampled Read* || *Length of the Transcript (bp)* || *# Contiguous Sampled Segment* || *Starding Position,End Position,# Read Sampled|*
+*Gene Symbol* || *Transcript ID* || *Rank* || *`#` Sampled Read* || *Length of the Transcript (bp)* || *`#` Contiguous Sampled Segment* || *Starding Position,End Position,`#` Read Sampled|*
 CCAR1 || NM_018237 || 1 || 1340 || 3858 || 1 || 6,3855,1340|
 MED26 || NM_004831 || 2 || 1274 || 3184 || 1 || 0,3181,1274|
 MEP1B || NM_005925 || 3 || 1139 || 2327 || 1 || 4,2320,1139|
