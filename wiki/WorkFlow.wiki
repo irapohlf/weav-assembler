@@ -11,4 +11,4 @@ I want to share the whole process in this page.
 === Instal Programs ===
 
 ==== WEAV ====
- * Compile: Refer <font size="3"> [http://code.google.com/p/weav-assembler/wiki/Compile Compilation Guide]</font>
+ * Compile: Refer <font size="2"> [http://code.google.com/p/weav-assembler/wiki/Compile Compilation Guide]</font>
