@@ -23,6 +23,27 @@ _This is not yet uploaded. I will upload this as soon as possible. All the progr
  * Compile:
  * Install:
 
+==== Test Dataset ====
+I prepared a read set for this documentation which were sampled by 10 selected genes as follows.
+
+*Gene Symbol* || *Transcript ID* || *Rank* || *# Sampled Read* || Length of the Transcript (bp)* || *# Contiguous Sampled Segment* || *Starding Position,End Position,# Read Sampled|*
+CCAR1 || NM_018237 || 1 || 1340 || 3858 || 1 || 6,3855,1340|
+MED26 || NM_004831 || 2 || 1274 || 3184 || 1 || 0,3181,1274|
+MEP1B || NM_005925 || 3 || 1139 || 2327 || 1 || 4,2320,1139|
+CSRP2BP || NM_020536 || 4 || 572 || 3714 || 1 || 19,3707,572|
+CSRP2BP || NR_028402 || 4 || 584 || 3152 || 1 || 0,3139,584|
+LOC729991-MEF2B || NR_027307 || 5 || 351 || 2268 || 1 || 0,2265,351|
+LOC729991-MEF2B || NR_027308 || 5 || 359 || 2156 || 1 || 6,2154,359|
+LOC729991-MEF2B || NM_005919 || 5 || 324 || 1978 || 1 || 0,1972,324|
+USP14 || NM_005151 || 6 || 443 || 4156 || 1 || 7,4153,443|
+USP14 || NM_001037334 || 6 || 461 || 4051 || 1 || 13,4040,461|
+TMCO1 || NM_019026 || 7 || 878 || 4456 || 1 || 6,4440,878|
+SLITRK3 || NM_014926 || 8 || 842 || 4281 || 1 || 1,4269,842|
+HYOU1 || NM_006389 || 9 || 378 || 4622 || 1 || 29,4616,378|
+HYOU1 || NM_001130991 || 9 || 382 || 4498 || 1 || 1,4482,382|
+NAP1L5 || NM_153757 || 10 || 673 || 1965 || 1 || 0,1958,673|
+
+
 === Running Process ===
 
 All the process is composed by *running*, *examination the result* and *preparation for the following process*.
