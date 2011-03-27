@@ -22,3 +22,7 @@ I want to share the whole process in this page.
 _This is not yet uploaded. I will upload this as soon as possible. All the programs except weav and weav_clustering are one of utilities._
  * Compile:
  * Install:
+
+=== Running Process ===
+
+All the process is composed by *running*, *examination the result* and *preparation for the following process*.
