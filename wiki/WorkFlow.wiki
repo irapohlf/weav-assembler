@@ -8,7 +8,17 @@ I want to share the whole process in this page.
 
 == Work Flow ==
 
-=== Instal Programs ===
+=== Install Programs ===
 
 ==== WEAV ====
  * Compile: Refer <font size="2"> [http://code.google.com/p/weav-assembler/wiki/Compile Compilation Guide]</font>
+ * Install: Move the WEAV executable file into wherever directory in your path. If you don't understand what this means, please refer other documents such as <font size="2"> [http://www.linfo.org/path_env_var.html What is PAT?].
+
+==== WEAV-CLUSTERING ====
+ * Compile: Refer <font size="2"> [http://code.google.com/p/weav-assembler/wiki/Manual_WEAVCLUSTERING Manual for WEAV-CLUSTERING] </font>
+ * Install: Move the WEAV-CLUSTERING executable file into wherever directory in your path.
+
+==== Utilities ====
+_This is not yet uploaded. I will upload this as soon as possible. All the programs except weav and weav_clustering are one of utilities._
+ * Compile:
+ * Install:
