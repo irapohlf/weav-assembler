@@ -19,8 +19,10 @@ Or, if config.in file has everything you want, just type it as follows.
 You can type what ever parameters like,
 
 {{{
-./weav K= 50 FILE_NAME=./data/test_file DEBUG_FILE=./debug_message/debug_test
+./weav K= 50 FILE_NAME=./data/test_file
 }}}
+
+Note that v0.1 used *DEBUG_FILE* field in the config.in, but from v0.2, WEAV does not use the field.
 
 See `Config File` for explanation about each field name.
 
@@ -53,7 +55,7 @@ Short summary is in the following table and the detailed information will follow
 ||MAX_LEN||0xFFFFFFFF||Integer||Maximum allowed contig length in _bp_.||
 ||MIN_LEN||0||Integer||Minumum allowed contig length in _bp_.||
 ||MAX_NUM_TEMP||10000||Integer||Maximum allowed number of template sequence.||
-||DEBUG_FILE||NO DEFAULT||String||Debug message file path.||
+||~~DEBUG_FILE~~||~~NO DEFAULT~~||~~String~~||~~Debug message file path.~~||
 ||MISMATCHES||4||Integer||Number of mismatches allowed||
 ||MEMORY_LIMIT||1024||Integer||Maximum memory you allow in _MB_||
 ||EXIT||NO DEFAULT||NO VALUE||Exit signal||
@@ -119,8 +121,9 @@ The maximum allowed contig length. If the graph is very complex, the longer is n
 Actually, WEAV doesn't produce any contig which is shorter than the edge length (K-mer), so the default would be _K_. However, you can specify this value to say
 ====_MAX_NUM_TEMP_====
 WEAV may not be able to keep all the template sequences because of memory and running time. You can specify the number of maximum template sequences WEAV can save. If the graph infers more template sequences than this number, WEAV will start to use partition-ligation method.
-====_DEBUG_FILE_====
-Not many information would be printed in terminal, and detailed information would be saved in this file.
+====_~~DEBUG_FILE~~_====
+~~Not many information would be printed in terminal, and detailed information would be saved in this file.~~
+The debug information will be saved in the $(_FILE_NAME_)`_`log file. You do not have to specify debug file.
 ====_MISMATCHES_====
 WEAV uses only the mapping information having mismatches less than or equal to this number.
 ====_MEMORY_LIMIT_====
